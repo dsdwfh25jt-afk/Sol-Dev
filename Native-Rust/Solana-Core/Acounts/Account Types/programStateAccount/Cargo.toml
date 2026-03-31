@@ -1,0 +1,15 @@
+[package]
+name = "programStateAccount"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.102"
+serde = "1.0.228"
+solana-client = "3.1.11"
+solana-commitment-config = "3.1.1"
+solana-sdk = "4.0.1"
+solana-system-instruction = "0.0.1"
+solana-system-interface = "3.1.0"
+spl-token-2022-interface = "2.1.0"
+tokio = { version = "1.50.0", features = ["full"] }

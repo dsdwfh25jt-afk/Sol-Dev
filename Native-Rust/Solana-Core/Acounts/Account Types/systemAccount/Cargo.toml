@@ -1,0 +1,11 @@
+[package]
+name = "systemAccount"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.102"
+solana-client = "3.1.11"
+solana-commitment-config = "3.1.1"
+solana-sdk = "4.0.1"
+tokio = { version = "1.50.0", features = ["full"] }

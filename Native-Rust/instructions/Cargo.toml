@@ -1,0 +1,10 @@
+[package]
+name = "instructions"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1.0.102"
+solana-sdk = "4.0.1"
+solana-system-interface = "3.2.0"
+tokio = { version = "1.51.1", features = ["full"] }

@@ -1,0 +1,11 @@
+[package]
+name = "transaction"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+anyhow = "1"
+solana-client = "=2.1.9"
+solana-sdk = "=2.1.9"
+solana-program = "=2.1.9"
+tokio = { version = "1", features = ["full"] }

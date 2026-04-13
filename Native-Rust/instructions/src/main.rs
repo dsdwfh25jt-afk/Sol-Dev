@@ -36,6 +36,7 @@ async fn main() -> Result<()> {
     connection.poll_for_signature_confirmation(&airdrop_signature, 1).await?;
 
 
+    // transfer instruction 
     let transfer_amount = LAMPORTS_PER_SOL / 100;
 
     let transfer_instuction = transfer(

@@ -31,7 +31,7 @@ async fn main() -> Result<()> {
             break;
         }
     }
-
+    
     // Check balance before transfer
     let pre_balance1 = connection.get_balance(&sender.pubkey()).await?;
     let pre_balance2 = connection.get_balance(&recipient.pubkey()).await?;

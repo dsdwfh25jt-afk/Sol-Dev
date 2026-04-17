@@ -2,7 +2,7 @@
 
 // add acc , create acc
 // send , recieve tokens 
-
+use std::io::{self, Write};
 use std::fs;
 use std::path::PathBuf;
 use std::path::Path;
@@ -18,12 +18,12 @@ async fn main() -> anyhow::Result<()>{
     println!("Public Key: {}", keypair.pubkey());
     println!("Secret Key: {:?}", keypair.to_bytes());
     save_key_to_project();
-    import_from_seed();
-     Ok(())
+    import_from_seed(taking_seed_input());
+    Ok(())
 }
 
 
-// creating a new acc
+// creating a new acc and saving to the wallet.json file 
 fn save_key_to_project() {
     let keypair = Keypair::new();
     println!("Public Key: {}", keypair.pubkey());
@@ -33,7 +33,7 @@ fn save_key_to_project() {
     // 1. Define the file name in the current project directory
     let file_path = Path::new("wallet_key.json");
 
-    // 2. Define your dummy key data (usually formatted as a JSON array of bytes)
+    // 2. Define your key data 
     let secreat_key = keypair.to_bytes(); 
 
     // 3. Write the data to the file
@@ -45,8 +45,8 @@ fn save_key_to_project() {
 }
 
 //  importing wallet from mnenommics 
-    fn import_from_seed() {
-    let phrase = "pill tomorrow foster begin walnut borrow virtual kick shift mutual shoe scatter";
+    fn import_from_seed(input_seed : String) {
+    let phrase = input_seed;
     let mnemonic = Mnemonic::parse_in(Language::English, phrase).expect("Invalid mnemonic phrase entered!");
 
     let seed = mnemonic.to_seed("");
@@ -55,32 +55,19 @@ fn save_key_to_project() {
     println!("recovered address {:?}", keypair.pubkey());
     }
 
+// taking seed input to recover wallet and returning the seed to the seed importing function 
+fn taking_seed_input() -> String{
+    print!("Please enter your 12 or 24-word mnemonic phrase: ");
+    io::stdout().flush().expect("Failed to flush stdout");
 
+    let mut input = String::new();
+    io::stdin()
+        .read_line(&mut input)
+        .expect("Failed to read line");
 
-// use std::io::{self, Write};
-// // Assuming you have your import_wallet_from_mnemonic function from earlier
+    let phrase = input.trim();
 
-// fn main() {
-//     // 1. Print the prompt. We use print! instead of println! so the input 
-//     // cursor stays on the same line.
-//     print!("Please enter your 12 or 24-word mnemonic phrase: ");
+    println!("You entered: {}", phrase); 
     
-//     // 2. We must flush stdout to ensure the print! macro displays immediately
-//     io::stdout().flush().expect("Failed to flush stdout");
-
-//     // 3. Create a mutable string to hold the user's input
-//     let mut input = String::new();
-
-//     // 4. Read the line from the terminal
-//     io::stdin()
-//         .read_line(&mut input)
-//         .expect("Failed to read line");
-
-//     // 5. Trim the invisible newline characters (\n or \r\n) from the end
-//     let phrase = input.trim();
-
-//     println!("You entered: {}", phrase); // Just for testing! Remove in production.
-    
-//     // 6. Pass the sanitized phrase to your existing function
-//     // import_wallet_from_mnemonic(phrase);
-// }
+    phrase.to_string()
+}

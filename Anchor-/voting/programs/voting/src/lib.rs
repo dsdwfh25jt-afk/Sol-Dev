@@ -120,9 +120,14 @@ pub struct Vote <'info>{
 }
 
 
+// this thing is the blueprint of the account 
+// how the poll will look like and what thing 
+// poll department will take care of 
 
-
-
+// poll account it will have ll the info about poll 
+// what's the poll about 
+// poll description , poll name ,
+// poll start / end and index 
 #[account] 
 #[derive(InitSpace)]
 pub struct PollAccount {
@@ -139,6 +144,10 @@ pub struct PollAccount {
     pub poll_option_index : u64,
 }
 
+// this acccount will gonna do same like poll acccount
+// for candidate 
+// it will store candidate name and vote 
+// it means this will be user account 
 #[account]
 #[derive(InitSpace)]
 pub struct CandidateAccount {
@@ -147,6 +156,8 @@ pub struct CandidateAccount {
     candidate_votes : u64, 
 }
 
+// this is gonna give error msg 
+// if user anyhow do mistake on this stuff 
 #[error_code]
 pub enum ErrorCode {
     #[msg("Voting has not started yet")]

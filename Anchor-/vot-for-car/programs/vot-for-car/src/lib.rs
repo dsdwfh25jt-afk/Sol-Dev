@@ -22,6 +22,8 @@ pub struct User <'info>{
         init,
         payer = signer,
         space = 8 + 16 ,
+        seeds = [b"vote",signer.key().as_ref()],
+        bump
         
     )]
     cars : Account <'info , Cars>,

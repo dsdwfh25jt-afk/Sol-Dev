@@ -12,6 +12,20 @@ pub mod vot_for_car {
         vot_of_cars.mclarren = 0;
         Ok(())
     }
+
+    pub fn vote_for_cars_ferrari(ctx : Context<Vote>) -> Result<()> {
+        
+        let vot_for_car = &mut ctx.accounts.cars;
+        vot_for_car.ferrari += 1;
+        Ok(())
+    }
+
+    pub fn vote_for_cars_mclarre(ctx : Context<Vote>) -> Result<()> {
+        
+        let vot_for_car = &mut ctx.accounts.cars;
+        vot_for_car.mclarren += 1;
+        Ok(())
+    }
 }
 
 #[derive(Accounts)]
@@ -30,6 +44,18 @@ pub struct User <'info>{
     system_program : Program<'info, System>,
 }
 
+#[derive(Accounts)]
+pub struct Vote <'info>{
+    #[account(mut)]
+    signer : Signer<'info>,
+
+    #[account(
+        mut,
+        seeds = [b"vote",signer.key().as_ref()],
+        bump  
+    )]
+    cars : Account <'info , Cars>
+}
 
 #[account] 
 pub struct Cars {

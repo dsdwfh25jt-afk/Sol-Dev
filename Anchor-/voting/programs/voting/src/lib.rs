@@ -20,7 +20,7 @@ pub mod voting {
         poll.poll_voting_start = start;
         poll.poll_voting_end = end;
         poll.poll_name = name;
-        Ok(())
+        Ok(()) 
 
     }
 
@@ -52,7 +52,6 @@ pub mod voting {
             candidate.candidate_votes +=1 ;
             Ok(())
     }
-
 }
 
 #[derive(Accounts)]
@@ -118,7 +117,6 @@ pub struct Vote <'info>{
     )]
     pub candidate_account : Account<'info , CandidateAccount>
 }
-
 
 // this thing is the blueprint of the account 
 // how the poll will look like and what thing 

@@ -64,4 +64,35 @@ token account :
 
                 }
 
-        Each token account is only bounded to only one token mint which means one token account can hold only one kind of token and the token is identified from the mint feild . 
+        Each token account is only bounded to only one token mint which means one token account can hold only one kind of token and the token is identified from the mint feild .
+
+
+3) Associated Token Account 
+
+-- what is associated token account ? 
+   Associated token account is the deterministic way to store user tokens using programId userId and mintId (Id == Pubkey) 
+   acccount will still the token account owned by token program not by the associated token program 
+   ///(which means account will not be owned by the program in which we will derive the account) 
+   Only token accounts which are created by associated token program are known as associated token accounts
+   Associated token program is a way to create a token account at a standard , deterministic address . 
+
+   Associated token account derivation (creation) : 
+
+        fn pub ata (
+            wallet_address : &Pubkey,
+            token_mint_addres : &Pubkey,
+            program_id : &Pubkey,
+            token_program_id : &pubkey
+        ) ->(Pubkey,u8){
+            Pubkey::find_program_address(
+                &[
+                    &wallet_address.to_le_bytes(),       /// Owner's public key 
+                    &program_id.to_le_bytes(),           /// token program 
+                    &token_mint_address.to_le_bytes(),   /// token mind address 
+                ],
+                program_id,  // associated token program Id 
+            )
+        }
+
+
+        for any wallet,token and mint add combination there is only one ATA . x,y,z == zyx will always 

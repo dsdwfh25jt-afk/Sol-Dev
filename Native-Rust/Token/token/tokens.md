@@ -96,3 +96,9 @@ token account :
 
 
         for any wallet,token and mint add combination there is only one ATA . x,y,z == zyx will always 
+
+4) Mint Tokens 
+-- what does minting do ? 
+   Minting creates a new bunch or slot or unit of tokens and increase the tokens supply 
+   Only mint authority can mint new tokens 
+   ![alt text](image.png)

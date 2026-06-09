@@ -98,8 +98,18 @@ token account :
         for any wallet,token and mint add combination there is only one ATA . x,y,z == zyx will always 
 
 4) Mint Tokens 
+
 -- what does minting do ? 
    Minting creates a new bunch or slot or unit of tokens and increase the tokens supply 
    Only mint authority can mint new tokens 
 
    ![alt text](image.png)
+
+   Here wallet does not hold tokens directly 
+    
+    1) Token program : This is the single authority which manages everything means every operations .
+
+    2) The mint account : This owned by token program and hold data about tokens such as global suppy of tokens ,
+                          the number of decimals , mint authority (the pubkey which authorized to mint tokens) .
+
+    3) The token account : The seperate account which hold data about tokens for specific user .

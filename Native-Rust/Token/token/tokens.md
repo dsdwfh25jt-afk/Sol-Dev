@@ -101,4 +101,5 @@ token account :
 -- what does minting do ? 
    Minting creates a new bunch or slot or unit of tokens and increase the tokens supply 
    Only mint authority can mint new tokens 
+
    ![alt text](image.png)
